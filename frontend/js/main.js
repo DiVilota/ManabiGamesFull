@@ -8,32 +8,56 @@
 
 // Datos estáticos como fallback
 const juegosEstaticos = [
-  {
-    id: 1,
-    titulo: "The Legend of Zelda",
-    consola: "NES",
-    año: 1986,
-    imagen: "assets/covers/zelda.png",
-    descripcion: "Explora calabozos, resuelve acertijos y salva a Hyrule en esta joya clásica."
-  },
-  {
-    id: 2,
-    titulo: "Super Metroid",
-    consola: "SNES",
-    año: 1994,
-    imagen: "assets/covers/supermetroid.png",
-    descripcion: "Una aventura galáctica intensa con exploración y mejoras progresivas."
-  },
-  {
-    id: 3,
-    titulo: "Chrono Trigger",
-    consola: "SNES",
-    año: 1995,
-    imagen: "covers/chronotrigger.png",
-    descripcion: "Viaja por el tiempo y salva el futuro en este legendario RPG."
-  }
-];
 
+ {
+
+  id: 1,
+
+  titulo: "The Legend of Zelda",
+
+  consola: "NES",
+
+  año: 1986,
+
+  imagen: "covers/zelda.png",
+
+  descripcion: "Explora calabozos, resuelve acertijos y salva a Hyrule en esta joya clásica."
+
+ },
+
+ {
+
+  id: 2,
+
+  titulo: "Super Metroid",
+
+  consola: "SNES",
+
+  año: 1994,
+
+  imagen: "covers/supermetroid.png",
+
+  descripcion: "Una aventura galáctica intensa con exploración y mejoras progresivas."
+
+ },
+
+ {
+
+  id: 3,
+
+  titulo: "Chrono Trigger",
+
+  consola: "SNES",
+
+  año: 1995,
+
+  imagen: "covers/chronotrigger.png",
+
+  descripcion: "Viaja por el tiempo y salva el futuro en este legendario RPG."
+
+ }
+
+];
 // Sistema de reseñas mejorado con opiniones
 function obtenerReseñasLocal() {
   try {

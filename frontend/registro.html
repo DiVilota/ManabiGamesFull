@@ -4,260 +4,637 @@
 
 <head>
 
- <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <title>Registro - ManabiGames</title>
+  <title>Registro - ManabiGames</title>
 
+  
 
+  <!-- Tailwind CSS -->
 
- <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
- <script src="https://cdn.tailwindcss.com"></script>
+  
 
+  <!-- SweetAlert2 -->
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
- <!-- SweetAlert2 -->
+  
 
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <!-- Tipografía Synthwave -->
 
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet" />
 
+  
 
- <!-- Tipografía Synthwave -->
+  <style>
 
- <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet" />
+    body {
 
+      font-family: 'Rajdhani', sans-serif;
 
+      background: #0a0a0a;
 
- <style>
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
 
-  body {
+      color: #00ffcc;
 
-   font-family: 'Rajdhani', sans-serif;
+    }
 
-   background: #0a0a0a;
+    
 
-   background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    .manabi-input {
 
-   color: #00ffcc;
+      background-color: #1a1a1a;
 
-  }
+      border: 2px solid #00ffcc;
 
-  .manabi-input {
+      color: white;
 
-   background-color: #1a1a1a;
+      transition: all 0.3s ease;
 
-   border: 1px solid #00ffcc;
+    }
 
-   color: white;
+    
 
-  }
+    .manabi-input:focus {
 
-  .manabi-input:focus {
+      outline: none;
 
-   outline: none;
+      border-color: #ff2e9d;
 
-   border-color: #ff2e9d;
+      box-shadow: 0 0 15px rgba(255, 46, 157, 0.3);
 
-   box-shadow: 0 0 0 2px #ff2e9d88;
+      transform: translateY(-2px);
 
-  }
+    }
 
- </style>
+    
+
+    .manabi-input::placeholder {
+
+      color: #666;
+
+    }
+
+    
+
+    .manabi-input.error {
+
+      border-color: #ff4444;
+
+      box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+
+    }
+
+    
+
+    .registro-btn {
+
+      background: linear-gradient(135deg, #00ffcc, #6c63ff);
+
+      transition: all 0.3s ease;
+
+      box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
+
+    }
+
+    
+
+    .registro-btn:hover {
+
+      background: linear-gradient(135deg, #ff2e9d, #6c63ff);
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 6px 20px rgba(255, 46, 157, 0.4);
+
+    }
+
+    
+
+    .form-container {
+
+      background: rgba(20, 20, 20, 0.9);
+
+      backdrop-filter: blur(10px);
+
+      border: 1px solid rgba(108, 99, 255, 0.5);
+
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    }
+
+    
+
+    .loading {
+
+      opacity: 0.7;
+
+      pointer-events: none;
+
+    }
+
+    
+
+    .neon-glow {
+
+      text-shadow: 0 0 10px #ff2e9d, 0 0 20px #ff2e9d, 0 0 30px #ff2e9d;
+
+    }
+
+    
+
+    @keyframes pulse {
+
+      0% { opacity: 1; }
+
+      50% { opacity: 0.5; }
+
+      100% { opacity: 1; }
+
+    }
+
+    
+
+    .pulse {
+
+      animation: pulse 2s infinite;
+
+    }
+
+  </style>
 
 </head>
 
-<body class="flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen p-4">
 
+  <div class="form-container p-8 rounded-2xl w-full max-w-md">
 
+    <div class="text-center mb-8">
 
- <div class="bg-[#141414] p-8 rounded-2xl shadow-2xl border border-[#6c63ff] w-full max-w-md">
+      <h2 class="text-4xl font-bold text-[#ff2e9d] neon-glow mb-2">ManabiGames</h2>
 
-  <h2 class="text-3xl font-bold text-center text-[#ff2e9d] mb-6">Registro ManabiGames</h2>
+      <p class="text-[#00ffcc] text-lg">Crear Nueva Cuenta</p>
 
+    </div>
 
 
-  <form id="loginForm" class="space-y-6">
 
-   <div>
+    <form id="registroForm" class="space-y-6">
 
-    <label class="block text-[#00ffcc] font-semibold" for="usuario">Usuario</label>
+      <div>
 
-    <input name="usuario" id="usuario" type="text" class="manabi-input w-full px-4 py-2 rounded-lg" placeholder="Ingresa tu usuario" />
+        <label class="block text-[#00ffcc] font-semibold mb-2" for="usuario">
 
-   </div>
+          👤 Usuario
 
+        </label>
 
+        <input
 
-   <div>
+          name="usuario"
 
-    <label class="block text-[#00ffcc] font-semibold" for="correo">Correo Electrónico</label>
+          id="usuario"
 
-    <input name="correo" id="correo" type="email" class="manabi-input w-full px-4 py-2 rounded-lg" placeholder="ejemplo@correo.com" />
+          type="text"
 
-   </div>
+          class="manabi-input w-full px-4 py-3 rounded-lg"
 
+          placeholder="Elige tu nombre de usuario"
 
+          minlength="3"
 
-   <div>
+          maxlength="20"
 
-    <label class="block text-[#00ffcc] font-semibold" for="clave">Contraseña</label>
+          required
 
-    <input name="clave" id="clave" type="password" class="manabi-input w-full px-4 py-2 rounded-lg" placeholder="********" />
+        />
 
-   </div>
+        <small class="text-gray-400 text-sm">Mínimo 3 caracteres</small>
 
+      </div>
 
 
-   <button type="submit" class="w-full py-2 rounded-lg font-bold text-white bg-gradient-to-r from-[#00ffcc] to-[#6c63ff] hover:from-[#ff2e9d] hover:to-[#6c63ff] transition-all">
 
-    Registrarse
+      <div>
 
-   </button>
+        <label class="block text-[#00ffcc] font-semibold mb-2" for="correo">
 
-   
-   <div class="text-center mt-4">
+          ✉️ Correo Electrónico
 
-    <a href="index.html" class="text-[#00ffcc] hover:text-[#ff2e9d] transition-colors">¿Ya tienes cuenta? Iniciar sesión</a>
+        </label>
 
-   </div>
+        <input
 
-  </form>
+          name="correo"
 
- </div>
+          id="correo"
 
+          type="email"
 
+          class="manabi-input w-full px-4 py-3 rounded-lg"
 
- <script>
+          placeholder="tu@email.com"
 
-  const SUPABASE_URL = "jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres?user=postgres.fxhccpvdtyugdbbacacv&password=puerto_retro4321";
+          required
 
-  const SUPABASE_KEY = "puerto_retro4321";
+        />
 
+        <small class="text-gray-400 text-sm">Usaremos este email para contactarte</small>
 
+      </div>
 
-  document.addEventListener('DOMContentLoaded', () => {
 
-   const form = document.getElementById('loginForm');
 
-   const usuario = document.getElementById('usuario');
+      <div>
 
-   const correo = document.getElementById('correo');
+        <label class="block text-[#00ffcc] font-semibold mb-2" for="clave">
 
-   const clave = document.getElementById('clave');
+          🔒 Contraseña
 
+        </label>
 
+        <input
 
-   form.addEventListener('submit', async (e) => {
+          name="clave"
 
-    e.preventDefault();
+          id="clave"
 
+          type="password"
 
+          class="manabi-input w-full px-4 py-3 rounded-lg"
 
-    usuario.classList.remove('border-red-500');
+          placeholder="Mínimo 6 caracteres"
 
-    correo.classList.remove('border-red-500');
+          minlength="6"
 
-    clave.classList.remove('border-red-500');
+          required
 
+        />
 
+        <small class="text-gray-400 text-sm">Mínimo 6 caracteres</small>
 
-    if (!usuario.value.trim() || !correo.value.trim() || !clave.value.trim()) {
+      </div>
 
-     if (!usuario.value.trim()) usuario.classList.add('border-red-500');
 
-     if (!correo.value.trim()) correo.classList.add('border-red-500');
 
-     if (!clave.value.trim()) clave.classList.add('border-red-500');
+      <button
 
+        type="submit"
 
+        id="submitBtn"
 
-     Swal.fire({
+        class="registro-btn w-full py-3 rounded-lg font-bold text-white text-lg"
 
-      icon: 'error',
+      >
 
-      title: 'Campos vacíos',
+        <span id="btnText">🚀 Registrarse</span>
 
-      text: 'Por favor completa todos los campos.'
+        <span id="btnLoading" class="hidden">⏳ Registrando...</span>
 
-     });
+      </button>
 
-     return;
+      
 
-    }
+      <div class="text-center mt-6">
 
+        <a href="index.html" class="text-[#00ffcc] hover:text-[#ff2e9d] transition-colors text-lg">
 
+          ¿Ya tienes cuenta? 👉 Iniciar sesión
 
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios`, {
+        </a>
 
-     method: 'POST',
+      </div>
 
-     headers: {
+    </form>
 
-      'Content-Type': 'application/json',
+  </div>
 
-      apikey: SUPABASE_KEY,
 
-      Authorization: `Bearer ${SUPABASE_KEY}`,
 
-      Prefer: 'return=representation'
+  <script>
 
-     },
+    // Configuración corregida para Supabase
 
-     body: JSON.stringify({
+    const SUPABASE_URL = "https://zysjytodswytwmjsyzeh.supabase.coeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5c2p5dG9kc3d5dHdtanN5emVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3Mjg4MjcsImV4cCI6MjA2ODMwNDgyN30.RsPcI-az36-81H7BkqBa1kfLTEIXnfwRp4wsS2oC4dw"; // Cambia esto por tu URL real
 
-      nombre: usuario.value.trim(),
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5c2p5dG9kc3d5dHdtanN5emVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3Mjg4MjcsImV4cCI6MjA2ODMwNDgyN30.RsPcI-az36-81H7BkqBa1kfLTEIXnfwRp4wsS2oC4dwtu_supabase_anon_key"; // Cambia esto por tu clave real
 
-      correo: correo.value.trim(),
+    
 
-      pass: clave.value.trim()
+    // Simulación de API (reemplaza con tu configuración real)
 
-     })
+    const API_CONFIG = {
+
+      // Para desarrollo local o API personalizada
+
+      url: "http://localhost:3000/api", // Cambia según tu backend
+
+      // O usa tu configuración de Supabase real
+
+    };
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const form = document.getElementById('registroForm');
+
+      const usuario = document.getElementById('usuario');
+
+      const correo = document.getElementById('correo');
+
+      const clave = document.getElementById('clave');
+
+      const submitBtn = document.getElementById('submitBtn');
+
+      const btnText = document.getElementById('btnText');
+
+      const btnLoading = document.getElementById('btnLoading');
+
+
+
+      // Validación en tiempo real
+
+      function validateField(field, condition, message) {
+
+        if (!condition) {
+
+          field.classList.add('error');
+
+          return false;
+
+        } else {
+
+          field.classList.remove('error');
+
+          return true;
+
+        }
+
+      }
+
+
+
+      // Validación de email
+
+      function isValidEmail(email) {
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        return emailRegex.test(email);
+
+      }
+
+
+
+      // Eventos de validación en tiempo real
+
+      usuario.addEventListener('input', () => {
+
+        validateField(usuario, usuario.value.trim().length >= 3, 'Mínimo 3 caracteres');
+
+      });
+
+
+
+      correo.addEventListener('input', () => {
+
+        validateField(correo, isValidEmail(correo.value.trim()), 'Email inválido');
+
+      });
+
+
+
+      clave.addEventListener('input', () => {
+
+        validateField(clave, clave.value.length >= 6, 'Mínimo 6 caracteres');
+
+      });
+
+
+
+      // Envío del formulario
+
+      form.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+
+
+
+        // Limpiar errores previos
+
+        [usuario, correo, clave].forEach(field => field.classList.remove('error'));
+
+
+
+        // Validaciones
+
+        const isUsuarioValid = validateField(usuario, usuario.value.trim().length >= 3, 'Usuario muy corto');
+
+        const isCorreoValid = validateField(correo, isValidEmail(correo.value.trim()), 'Email inválido');
+
+        const isClaveValid = validateField(clave, clave.value.length >= 6, 'Contraseña muy corta');
+
+
+
+        if (!isUsuarioValid || !isCorreoValid || !isClaveValid) {
+
+          Swal.fire({
+
+            icon: 'error',
+
+            title: 'Datos incorrectos',
+
+            text: 'Por favor corrige los campos marcados en rojo.',
+
+            background: '#1a1a1a',
+
+            color: '#00ffcc'
+
+          });
+
+          return;
+
+        }
+
+
+
+        // Mostrar loading
+
+        form.classList.add('loading');
+
+        btnText.classList.add('hidden');
+
+        btnLoading.classList.remove('hidden');
+
+
+
+        try {
+
+          // Simulación de registro (reemplaza con tu lógica real)
+
+          await simulateRegistration({
+
+            usuario: usuario.value.trim(),
+
+            correo: correo.value.trim(),
+
+            clave: clave.value
+
+          });
+
+
+
+          // Éxito
+
+          Swal.fire({
+
+            icon: 'success',
+
+            title: '¡Registro exitoso! 🎉',
+
+            text: `¡Bienvenido a ManabiGames, ${usuario.value}!`,
+
+            background: '#1a1a1a',
+
+            color: '#00ffcc',
+
+            timer: 3000,
+
+            showConfirmButton: true
+
+          }).then(() => {
+
+            form.reset();
+
+            window.location.href = 'index.html';
+
+          });
+
+
+
+        } catch (error) {
+
+          Swal.fire({
+
+            icon: 'error',
+
+            title: 'Error en el registro',
+
+            text: error.message || 'Hubo un problema al crear tu cuenta. Inténtalo de nuevo.',
+
+            background: '#1a1a1a',
+
+            color: '#00ffcc'
+
+          });
+
+        } finally {
+
+          // Ocultar loading
+
+          form.classList.remove('loading');
+
+          btnText.classList.remove('hidden');
+
+          btnLoading.classList.add('hidden');
+
+        }
+
+      });
+
+
+
+      // Función simulada de registro (reemplaza con tu lógica real)
+
+      async function simulateRegistration(userData) {
+
+        // Simular delay de red
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        
+
+        // Simular posibles errores
+
+        if (userData.usuario.toLowerCase() === 'admin') {
+
+          throw new Error('Este nombre de usuario ya está en uso');
+
+        }
+
+        
+
+        // Aquí iría tu lógica real de registro
+
+        console.log('Datos a registrar:', userData);
+
+        return { success: true };
+
+      }
+
+
+
+      // Función para registro real con Supabase (descomenta cuando tengas la configuración)
+
+      /*
+
+      async function registerWithSupabase(userData) {
+
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/usuarios`, {
+
+          method: 'POST',
+
+          headers: {
+
+            'Content-Type': 'application/json',
+
+            'apikey': SUPABASE_KEY,
+
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+
+            'Prefer': 'return=representation'
+
+          },
+
+          body: JSON.stringify({
+
+            nombre: userData.usuario,
+
+            correo: userData.correo,
+
+            pass: userData.clave
+
+          })
+
+        });
+
+
+
+        if (!response.ok) {
+
+          const errorData = await response.json();
+
+          throw new Error(errorData.message || 'Error en el servidor');
+
+        }
+
+
+
+        return await response.json();
+
+      }
+
+      */
 
     });
 
-
-
-    if (!res.ok) {
-
-     const errorData = await res.json();
-
-     Swal.fire("Error", "No se pudo guardar el usuario: " + errorData.message, "error");
-
-     return;
-
-    }
-
-
-
-    const data = await res.json();
-
-    Swal.fire({
-
-     icon: 'success',
-
-     title: '¡Registro exitoso!',
-
-     text: `Bienvenido, ${usuario.value}!`,
-
-     timer: 2000,
-
-     showConfirmButton: true
-
-    }).then(() => {
-
-     form.reset();
-
-     window.location.href = 'index.html';
-
-    });
-
-   });
-
-  });
-
- </script>
+  </script>
 
 </body>
 
