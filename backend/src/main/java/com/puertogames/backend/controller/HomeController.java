@@ -8,7 +8,7 @@ public class HomeController {
     
     @GetMapping("/")
     public String home() {
-        return "¡Backend de PuertoGames funcionando correctamente! 🎮";
+        return "¡Backend de ManabiGames funcionando correctamente! 🎮";
     }
     
     @GetMapping("/health")
