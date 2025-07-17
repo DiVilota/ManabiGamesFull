@@ -1,7 +1,7 @@
 
 // config.js - Configuración completa para conexión al backend
 const API_CONFIG = {
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'https://manabigamesfull-production.up.railway.app/api',
     endpoints: {
         juegos: '/juegos',
         resenas: '/resenas',

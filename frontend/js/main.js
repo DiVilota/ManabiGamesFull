@@ -167,7 +167,7 @@ function mostrarModalReseña(juegoId, tituloJuego) {
       calificacionSeleccionada = parseInt(estrella.dataset.valor);
       actualizarEstrellas(modal, calificacionSeleccionada);
     });
-    
+  
     estrella.addEventListener('mouseenter', () => {
       const valor = parseInt(estrella.dataset.valor);
       actualizarEstrellas(modal, valor);
