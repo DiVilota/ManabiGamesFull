@@ -1,4 +1,4 @@
-package com.puertogames.backend.controller;
+package main.java.com.puertogames.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
