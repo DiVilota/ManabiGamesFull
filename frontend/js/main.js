@@ -29,7 +29,7 @@ const juegosEstaticos = [
     titulo: "Chrono Trigger",
     consola: "SNES",
     año: 1995,
-    imagen: "chronotrigger.png",
+    imagen: "covers/chronotrigger.png",
     descripcion: "Viaja por el tiempo y salva el futuro en este legendario RPG."
   }
 ];
