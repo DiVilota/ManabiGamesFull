@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ManabiGames</title>
+  <link rel="icon" href="assets/logo/ManabiGames Logo.png" />
+  <!-- Fuentes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Fondo oscuro con patrón tipo cuadrícula retro */
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Share Tech Mono', monospace;
+      background-image:
+        radial-gradient(#222 1px, transparent 1px),
+        linear-gradient(to bottom, #0a0a0a, #0a0a0a);
+      background-size: 40px 40px;
+    }
+    /* Fuentes para encabezados */
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+    }
+    /* Estilo neon para títulos */
+    .neon {
+      text-shadow: 0 0 5px #ff2e9d, 0 0 10px #ff2e9d, 0 0 20px #ff2e9d;
+      color: #ff2e9d;
+    }
+    /* Botones con efecto glow al hover */
+    .cta-glow {
+      transition: all 0.3s ease-in-out;
+    }
+    .cta-glow:hover {
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-white">
+
+  <!-- Header: logo y navegación -->
+  <header class="bg-[#0a0a0a] p-4 flex justify-between items-center border-b border-[#6c63ff]">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo/ManabiGames Logo.png" alt="Logo ManabiGames" class="h-12" />
+      <h1 class="text-3xl neon">ManabiGames</h1>
+    </div>
+    <nav class="space-x-6 text-[#00ffcc]">
+      <a href="index.html" class="hover:underline">Inicio</a>
+      <a href="formulario.html" class="hover:underline">Formulario</a>
+      <a href="detalles.html" class="hover:underline">Detalles</a>
+    </nav>
+  </header>
+
+  <!-- Contenido principal con formulario -->
+  <main class="p-6 max-w-md mx-auto">
+    <h2 class="text-3xl neon mb-6 text-center">Contáctanos</h2>
+
+    <!-- Formulario con fondo oscuro, bordes redondeados y sombra -->
+    <form id="contactForm" class="flex flex-col gap-4 bg-[#1a1a1a] p-6 rounded-xl shadow-lg">
+      <!-- Etiqueta + input: nombre -->
+      <label for="nombre" class="text-[#00ffcc] font-semibold">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" 
+        class="p-2 rounded bg-[#0a0a0a] text-white border border-[#6c63ff] focus:outline-none focus:ring-2 focus:ring-[#00ffcc]" />
+
+      <!-- Etiqueta + input: email -->
+      <label for="email" class="text-[#00ffcc] font-semibold">Email:</label>
+      <input type="email" id="email" name="email" placeholder="tu@email.com" 
+        class="p-2 rounded bg-[#0a0a0a] text-white border border-[#6c63ff] focus:outline-none focus:ring-2 focus:ring-[#00ffcc]" />
+
+      <!-- Etiqueta + textarea: mensaje -->
+      <label for="mensaje" class="text-[#00ffcc] font-semibold">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." 
+        class="p-2 rounded bg-[#0a0a0a] text-white border border-[#6c63ff] focus:outline-none focus:ring-2 focus:ring-[#00ffcc]"></textarea>
+
+      <!-- Botón enviar con efecto glow al pasar el mouse -->
+      <button type="submit" class="bg-[#00ffcc] text-black font-bold py-2 rounded cta-glow">
+        Enviar
+      </button>
+
+      <!-- Mensajes de error y éxito, ocultos inicialmente -->
+      <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden"></p>
+      <p id="successMsg" class="text-green-500 text-sm mt-2 hidden">¡Mensaje enviado con éxito!</p>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0a0a0a] border-t border-[#6c63ff] text-center p-4 text-sm text-[#9d00ff]">
+    Gracias por viajar con nosotros a través del tiempo 🚀
+  </footer>
+
+  <!-- JS formulario -->
+  <script src="js/config.js"></script>
+  <script src="js/formulario.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - ManabiGames</title>
+  
+  <!-- Fuentes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  
+  <style>
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Share Tech Mono', monospace;
+      background-image:
+        radial-gradient(#222 1px, transparent 1px),
+        linear-gradient(to bottom, #0a0a0a, #0a0a0a);
+      background-size: 40px 40px;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .neon {
+      text-shadow: 0 0 5px #ff2e9d, 0 0 10px #ff2e9d, 0 0 20px #ff2e9d;
+      color: #ff2e9d;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 46, 157, 0.3);
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border: 1px solid #6c63ff;
+    }
+    
+    .download-section {
+      background: linear-gradient(135deg, #6c63ff 0%, #ff2e9d 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Icono de placeholder cuando no hay logo */
+    .logo-placeholder {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(45deg, #6c63ff, #ff2e9d);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white">
+  <!-- Header -->
+  <header class="bg-[#0a0a0a] p-4 flex justify-between items-center border-b border-[#6c63ff]">
+    <div class="flex items-center gap-3">
+      <!-- Logo con fallback -->
+      <div class="logo-placeholder">🎮</div>
+      <h1 class="text-3xl neon">ManabiGames Dashboard</h1>
+    </div>
+    <nav class="space-x-6 text-[#00ffcc]">
+      <a href="index.html" class="hover:underline cursor-pointer">Inicio</a>
+      <a href="dashboard.html"  class="hover:underline cursor-pointer">Dashboard</a>
+      <a href="formulario.html"  class="hover:underline cursor-pointer">Formulario</a>
+    </nav>
+  </header>
+
+  <!-- Sección de Descarga del Emulador -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <div class="download-section text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">🎮 Descarga Nuestro Emulador</h2>
+      <p class="text-xl text-white mb-6">Juega miles de juegos retro directamente en tu dispositivo</p>
+      <button onclick="downloadEmulator()" class="bg-white text-[#6c63ff] px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors">
+        Descargar Emulador
+      </button>
+      <p class="text-sm text-white mt-4 opacity-80">Compatible con Windows, Mac y Linux</p>
+    </div>
+  </section>
+
+  <!-- Estadísticas Principales -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl neon mb-6">Estadísticas Generales</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <!-- Total Juegos -->
+      <div class="stat-card card-hover rounded-xl p-6 text-center">
+        <div class="text-4xl mb-2">🎮</div>
+        <h3 class="text-xl font-bold text-[#00ffcc]">Total Juegos</h3>
+        <p class="text-3xl font-bold neon" id="totalJuegos">0</p>
+      </div>
+      
+      <!-- Total Reseñas -->
+      <div class="stat-card card-hover rounded-xl p-6 text-center">
+        <div class="text-4xl mb-2">⭐</div>
+        <h3 class="text-xl font-bold text-[#00ffcc]">Total Reseñas</h3>
+        <p class="text-3xl font-bold neon" id="totalResenas">0</p>
+      </div>
+      
+      <!-- Usuarios Online -->
+      <div class="stat-card card-hover rounded-xl p-6 text-center">
+        <div class="text-4xl mb-2">👥</div>
+        <h3 class="text-xl font-bold text-[#00ffcc]">Usuarios Online</h3>
+        <p class="text-3xl font-bold neon" id="usuariosOnline">0</p>
+      </div>
+      
+      <!-- Rating Promedio -->
+      <div class="stat-card card-hover rounded-xl p-6 text-center">
+        <div class="text-4xl mb-2">🌟</div>
+        <h3 class="text-xl font-bold text-[#00ffcc]">Rating Promedio</h3>
+        <p class="text-3xl font-bold neon" id="ratingPromedio">0.0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gráficos -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Gráfico de Juegos Más Vistos -->
+      <div class="stat-card rounded-xl p-6">
+        <h3 class="text-2xl neon mb-4">🔥 Juegos Más Vistos</h3>
+        <div class="h-80">
+          <canvas id="chartVistos"></canvas>
+        </div>
+      </div>
+      
+      <!-- Gráfico de Mejores Reseñas -->
+      <div class="stat-card rounded-xl p-6">
+        <h3 class="text-2xl neon mb-4">⭐ Mejores Reseñas</h3>
+        <div class="h-80">
+          <canvas id="chartReseñas"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reseñas Recientes -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl neon mb-6">📝 Reseñas Recientes</h2>
+    <div class="stat-card rounded-xl p-6">
+      <div id="resenasRecientes" class="space-y-4">
+        <!-- Se llenarán dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Juegos Populares -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl neon mb-6">🏆 Top Juegos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Más Vistos -->
+      <div class="stat-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-[#00ffcc] mb-4">Más Vistos</h3>
+        <div id="juegosMasVistos" class="space-y-3">
+          <!-- Se llenarán dinámicamente -->
+        </div>
+      </div>
+      
+      <!-- Mejor Rankeados -->
+      <div class="stat-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-[#00ffcc] mb-4">Mejor Rankeados</h3>
+        <div id="juegosMejorRankeados" class="space-y-3">
+          <!-- Se llenarán dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0a0a0a] border-t border-[#6c63ff] text-center p-4 text-sm text-[#9d00ff] mt-12">
+    Dashboard ManabiGames - Datos actualizados en tiempo real 🚀
+  </footer>
+
+  <script>
+    // Función para navegar entre páginas
+    function goToPage(page) {
+      console.log(`Navegando a: ${page}`);
+      // Aquí puedes agregar la lógica real de navegación
+      alert(`Navegando a: ${page}`);
+    }
+
+    // Función para descargar emulador
+    function downloadEmulator() {
+      alert('¡Descarga iniciada! (Esta es una función de ejemplo)');
+    }
+
+    // Configuración base para los gráficos
+    const chartConfig = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#00ffcc'
+          }
+        }
+      },
+      scales: {
+        y: {
+          ticks: {
+            color: '#00ffcc'
+          },
+          grid: {
+            color: '#333'
+          }
+        },
+        x: {
+          ticks: {
+            color: '#00ffcc'
+          },
+          grid: {
+            color: '#333'
+          }
+        }
+      }
+    };
+
+    // Datos de ejemplo
+    const datosEjemplo = {
+      totalJuegos: 1250,
+      totalResenas: 3420,
+      usuariosOnline: 127,
+      ratingPromedio: 4.2,
+      juegosMasVistos: [
+        { nombre: "Zelda: Link's Awakening", visualizaciones: 1520 },
+        { nombre: "Super Metroid", visualizaciones: 1340 },
+        { nombre: "Chrono Trigger", visualizaciones: 1280 },
+        { nombre: "Final Fantasy VI", visualizaciones: 1150 },
+        { nombre: "Super Mario World", visualizaciones: 1090 }
+      ],
+      juegosMejorRankeados: [
+        { nombre: "Chrono Trigger", rating: 4.9 },
+        { nombre: "Super Metroid", rating: 4.8 },
+        { nombre: "Final Fantasy VI", rating: 4.7 },
+        { nombre: "Zelda: A Link to the Past", rating: 4.6 },
+        { nombre: "Super Mario World", rating: 4.5 }
+      ],
+      resenasRecientes: [
+        { usuario: "RetroGamer92", juego: "Chrono Trigger", rating: 5, comentario: "¡Obra maestra absoluta! La historia es increíble.", fecha: "2025-07-02" },
+        { usuario: "NostalgicPlayer", juego: "Super Metroid", rating: 4, comentario: "Atmósfera perfecta y jugabilidad fluida.", fecha: "2025-07-02" },
+        { usuario: "ClassicFan", juego: "Final Fantasy VI", rating: 5, comentario: "El mejor RPG de la era 16-bit.", fecha: "2025-07-01" },
+        { usuario: "PixelMaster", juego: "Super Mario World", rating: 4, comentario: "Diversión pura y controladores perfectos.", fecha: "2025-07-01" }
+      ]
+    };
+
+    // Función para cargar estadísticas
+    function cargarEstadisticas() {
+      const elementos = {
+        totalJuegos: document.getElementById('totalJuegos'),
+        totalResenas: document.getElementById('totalResenas'),
+        usuariosOnline: document.getElementById('usuariosOnline'),
+        ratingPromedio: document.getElementById('ratingPromedio')
+      };
+
+      // Verificar que los elementos existan
+      if (elementos.totalJuegos) elementos.totalJuegos.textContent = datosEjemplo.totalJuegos.toLocaleString();
+      if (elementos.totalResenas) elementos.totalResenas.textContent = datosEjemplo.totalResenas.toLocaleString();
+      if (elementos.usuariosOnline) elementos.usuariosOnline.textContent = datosEjemplo.usuariosOnline.toLocaleString();
+      if (elementos.ratingPromedio) elementos.ratingPromedio.textContent = datosEjemplo.ratingPromedio.toFixed(1);
+    }
+
+    // Función para crear gráfico de juegos más vistos
+    function crearGraficoVistos() {
+      const ctx = document.getElementById('chartVistos');
+      if (!ctx) return;
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: datosEjemplo.juegosMasVistos.map(j => j.nombre),
+          datasets: [{
+            label: 'Visualizaciones',
+            data: datosEjemplo.juegosMasVistos.map(j => j.visualizaciones),
+            backgroundColor: '#ff2e9d',
+            borderColor: '#ff2e9d',
+            borderWidth: 1
+          }]
+        },
+        options: chartConfig
+      });
+    }
+
+    // Función para crear gráfico de mejores reseñas
+    function crearGraficoReseñas() {
+      const ctx = document.getElementById('chartReseñas');
+      if (!ctx) return;
+
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: datosEjemplo.juegosMejorRankeados.map(j => j.nombre),
+          datasets: [{
+            label: 'Rating',
+            data: datosEjemplo.juegosMejorRankeados.map(j => j.rating),
+            backgroundColor: [
+              '#ff2e9d',
+              '#00ffcc',
+              '#6c63ff',
+              '#9d00ff',
+              '#ffcc00'
+            ],
+            borderWidth: 2,
+            borderColor: '#0a0a0a'
+          }]
+        },
+        options: {
+          ...chartConfig,
+          scales: {} // Doughnut no necesita escalas
+        }
+      });
+    }
+
+    // Función para mostrar reseñas recientes
+    function mostrarResenasRecientes() {
+      const container = document.getElementById('resenasRecientes');
+      if (!container) return;
+
+      container.innerHTML = '';
+      
+      datosEjemplo.resenasRecientes.forEach(resena => {
+        const estrellas = '⭐'.repeat(resena.rating);
+        const resenaHTML = `
+          <div class="bg-[#2a2a2a] rounded-lg p-4 border-l-4 border-[#00ffcc]">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-[#ff2e9d]">${resena.usuario}</h4>
+              <span class="text-sm text-gray-400">${resena.fecha}</span>
+            </div>
+            <p class="text-[#00ffcc] font-semibold">${resena.juego}</p>
+            <p class="text-yellow-400 text-lg">${estrellas}</p>
+            <p class="text-white mt-2">${resena.comentario}</p>
+          </div>
+        `;
+        container.innerHTML += resenaHTML;
+      });
+    }
+
+    // Función para mostrar juegos populares
+    function mostrarJuegosPopulares() {
+      // Juegos más vistos
+      const containerVistos = document.getElementById('juegosMasVistos');
+      if (containerVistos) {
+        containerVistos.innerHTML = '';
+        
+        datosEjemplo.juegosMasVistos.forEach((juego, index) => {
+          const juegoHTML = `
+            <div class="flex justify-between items-center p-3 bg-[#2a2a2a] rounded-lg">
+              <div class="flex items-center gap-3">
+                <span class="text-[#ff2e9d] font-bold text-lg">#${index + 1}</span>
+                <span class="text-white">${juego.nombre}</span>
+              </div>
+              <span class="text-[#00ffcc] font-semibold">${juego.visualizaciones.toLocaleString()}</span>
+            </div>
+          `;
+          containerVistos.innerHTML += juegoHTML;
+        });
+      }
+
+      // Juegos mejor rankeados
+      const containerRankeados = document.getElementById('juegosMejorRankeados');
+      if (containerRankeados) {
+        containerRankeados.innerHTML = '';
+        
+        datosEjemplo.juegosMejorRankeados.forEach((juego, index) => {
+          const juegoHTML = `
+            <div class="flex justify-between items-center p-3 bg-[#2a2a2a] rounded-lg">
+              <div class="flex items-center gap-3">
+                <span class="text-[#ff2e9d] font-bold text-lg">#${index + 1}</span>
+                <span class="text-white">${juego.nombre}</span>
+              </div>
+              <span class="text-yellow-400 font-semibold">${juego.rating}⭐</span>
+            </div>
+          `;
+          containerRankeados.innerHTML += juegoHTML;
+        });
+      }
+    }
+
+    // Función para simular actualización de usuarios online
+    function actualizarUsuariosOnline() {
+      setInterval(() => {
+        const variacion = Math.floor(Math.random() * 21) - 10; // -10 a +10
+        const nuevosUsuarios = Math.max(50, datosEjemplo.usuariosOnline + variacion);
+        datosEjemplo.usuariosOnline = nuevosUsuarios;
+        
+        const elemento = document.getElementById('usuariosOnline');
+        if (elemento) {
+          elemento.textContent = nuevosUsuarios.toLocaleString();
+        }
+      }, 5000); // Actualiza cada 5 segundos
+    }
+
+    // Función para simular datos en tiempo real
+    function simularDatosBackend() {
+      try {
+        console.log('Inicializando dashboard...');
+        
+        cargarEstadisticas();
+        crearGraficoVistos();
+        crearGraficoReseñas();
+        mostrarResenasRecientes();
+        mostrarJuegosPopulares();
+        actualizarUsuariosOnline();
+        
+        console.log('Dashboard cargado exitosamente');
+      } catch (error) {
+        console.error('Error al cargar datos:', error);
+      }
+    }
+
+    // Inicializar dashboard cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM cargado, iniciando dashboard...');
+      simularDatosBackend();
+    });
+
+    // Fallback por si hay problemas con DOMContentLoaded
+    window.addEventListener('load', () => {
+      console.log('Ventana cargada completamente');
+      // Solo ejecutar si no se ha inicializado ya
+      if (!document.getElementById('totalJuegos').textContent || document.getElementById('totalJuegos').textContent === '0') {
+        simularDatosBackend();
+      }
+    });
+  </script>
+</body>
+</html>

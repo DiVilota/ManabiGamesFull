@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManabiGames</title>
+  <link rel="icon" href="/assets/covers/logo/ManabiGames Logo.png" />
+  
+  <!-- Fuentes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Tailwind.CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Estilos personalizados -->
+  <style>
+    /* Fondo oscuro con patrón tipo cuadrícula retro */
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Share Tech Mono', monospace;
+      background-image:
+        radial-gradient(#222 1px, transparent 1px),
+        linear-gradient(to bottom, #0a0a0a, #0a0a0a);
+      background-size: 40px 40px;
+    }
+
+    /* Fuente futurista para encabezados */
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Efecto neón rosado para títulos destacados */
+    .neon {
+      text-shadow: 0 0 5px #ff2e9d, 0 0 10px #ff2e9d, 0 0 20px #ff2e9d;
+      color: #ff2e9d;
+    }
+
+    /* Transición y efecto glow para botones y elementos interactivos */
+    .cta-glow {
+      transition: all 0.3s ease-in-out;
+    }
+    .cta-glow:hover {
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+      transform: scale(1.05);
+    }
+
+    /* Estilo especial para el botón Dashboard */
+    .dashboard-btn {
+      background: linear-gradient(45deg, #6c63ff, #9d00ff);
+      border: 2px solid #00ffcc;
+      transition: all 0.3s ease-in-out;
+    }
+    .dashboard-btn:hover {
+      box-shadow: 0 0 15px #6c63ff, 0 0 30px #6c63ff;
+      transform: translateY(-2px);
+      border-color: #ff2e9d;
+    }
+
+    /* Altura mínima para las tarjetas, para uniformidad */
+    .card {
+      min-height: 500px;
+    }
+
+    /* Imagen de las tarjetas: tamaño fijo y borde redondeado */
+    .card-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      background-color: #333;
+    }
+
+    /* Estilo para cuando las imágenes no cargan */
+    .card-img[src=""], .card-img:not([src]) {
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-white">
+
+  <!-- Header con logo y navegación -->
+  <header class="bg-[#0a0a0a] p-4 flex justify-between items-center border-b border-[#6c63ff]">
+    <div class="flex items-center gap-3">
+      <!-- RUTA CORREGIDA del logo -->
+      <img src="assets/logo/ManabiGames Logo.png" alt="Logo ManabiGames" class="h-12" 
+           onerror="this.style.display='none'; console.warn('Logo no encontrado')" />
+      <h1 class="text-3xl neon">ManabiGames</h1>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <div class="space-x-6 text-[#00ffcc]">
+        <a href="index.html" class="hover:underline">Inicio</a>
+        <a href="formulario.html" class="hover:underline">Formulario</a>
+        <a href="detalles.html" class="hover:underline">Detalles</a>
+      </div>
+      <!-- Botón Dashboard destacado -->
+      <a href="dashboard.html" class="dashboard-btn text-white px-4 py-2 rounded-lg font-bold text-sm">
+        📊 Dashboard
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero principal con llamado a la acción -->
+  <section class="flex flex-col items-center justify-center text-center py-24 px-4 bg-gradient-to-b from-black via-[#0a0a0a] to-[#0a0a0a]">
+    <h2 class="text-4xl md:text-6xl neon mb-6">Tu viaje retro comienza aquí</h2>
+    <p class="text-[#6c63ff] text-lg mb-8">Explora los clásicos que marcaron una era.</p>
+    <div class="flex gap-4">
+      <a href="#catalogo" class="cta-glow bg-[#00ffcc] text-black px-6 py-3 rounded-full font-bold">Explorar catálogo</a>
+      <a href="dashboard.html" class="cta-glow bg-[#6c63ff] text-white px-6 py-3 rounded-full font-bold">Ver Dashboard</a>
+    </div>
+  </section>
+
+  <!-- Catálogo de juegos clásicos -->
+  <section class="p-6" id="seccion-clasicos">
+    <h1 class="neon text-3xl mb-6">Juegos Clásicos</h1>
+    <main id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Tarjetas generadas dinámicamente por JS -->
+      <div class="col-span-full text-center text-[#6c63ff] p-4">
+        <p>Cargando juegos...</p>
+      </div>
+    </main>
+  </section>
+
+  <!-- Footer simple con borde y texto pequeño -->
+  <footer class="bg-[#0a0a0a] border-t border-[#6c63ff] text-center p-4 text-sm text-[#9d00ff]">
+    Gracias por viajar con nosotros a través del tiempo 🚀
+  </footer>
+
+  <!-- Script JS principal -->
+<script src="js/config.js"></script>
+
+<script src="js/reviews.js"></script>
+
+<script src="js/main.js"></script>
+  
+</body>
+</html>

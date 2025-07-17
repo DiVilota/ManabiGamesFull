@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ManabiGames</title>
+  <link rel="icon" href="assets/logo/ManabiGames Logo.png" />
+
+  <!-- Fuentes personalizadas -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Estilos base y fondo con patrón cuadriculado retro */
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Share Tech Mono', monospace;
+      background-image:
+        radial-gradient(#222 1px, transparent 1px),
+        linear-gradient(to bottom, #0a0a0a, #0a0a0a);
+      background-size: 40px 40px;
+    }
+
+    /* Fuente para encabezados */
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Estilo neón rosado para títulos */
+    .neon {
+      text-shadow: 0 0 5px #ff2e9d, 0 0 10px #ff2e9d, 0 0 20px #ff2e9d;
+      color: #ff2e9d;
+    }
+
+    /* Efecto glow para botones y enlaces */
+    .cta-glow {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .cta-glow:hover {
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-white">
+
+  <!-- Header: Logo y navegación principal -->
+  <header class="bg-[#0a0a0a] p-4 flex justify-between items-center border-b border-[#6c63ff]">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo/ManabiGames Logo.png" alt="Logo ManabiGames" class="h-12" />
+      <h1 class="text-3xl neon">ManabiGames</h1>
+    </div>
+    <nav class="space-x-6 text-[#00ffcc]">
+      <a href="index.html" class="hover:underline">Inicio</a>
+      <a href="formulario.html" class="hover:underline">Formulario</a>
+      <a href="detalles.html" class="hover:underline">Detalles</a>
+    </nav>
+  </header>
+
+  <!-- Contenedor principal para el detalle dinámico del juego -->
+  <main id="detalle-juego" class="flex-grow p-6 max-w-4xl mx-auto">
+    <!-- El contenido se inyectará aquí vía JS -->
+  </main>
+
+  <!-- Footer con estilo synthwave -->
+  <footer class="bg-[#0a0a0a] border-t border-[#6c63ff] text-center p-4 text-sm text-[#9d00ff]">
+    Gracias por viajar con nosotros a través del tiempo 🚀
+  </footer>
+
+  <!-- Script para cargar detalles dinámicos -->
+  <script src="js/config.js"></script>
+  <script src="js/detalles.js"></script>
+  
+</body>
+</html>
